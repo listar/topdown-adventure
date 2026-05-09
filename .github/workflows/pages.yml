@@ -1,5 +1,5 @@
 # 将静态游戏站点发布到 GitHub Pages（推送 main 或手动运行）
-# 使用前请在仓库 Settings → Pages → Source 选择 "GitHub Actions"
+# 前提： 仓库 Settings → Pages → Build and deployment → Source 选 "GitHub Actions" 并保存
 
 name: Deploy static site to GitHub Pages
 
@@ -38,8 +38,8 @@ jobs:
             ./ _site/
           touch _site/.nojekyll
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      # 不使用 actions/configure-pages：在未于仓库 Settings → Pages 启用「GitHub Actions」源时，
+      # 该 action 会因 GET /pages 返回 404 而失败；纯静态站点也不需要其 SSG 配置能力。
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,4 +48,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

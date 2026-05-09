@@ -38,12 +38,20 @@ python3 -m http.server 8080
 
 本仓库包含 [GitHub Actions 工作流](.github/workflows/pages.yml)：在推送 `main` 分支后自动把可运行站点部署到 **GitHub Pages**。
 
-### 一次性配置
+### 一次性配置（顺序很重要）
 
 1. 将本仓库推送到 GitHub（例如 `https://github.com/<你的用户名>/topdown-adventure`）。
-2. 打开仓库 **Settings → Pages**。
-3. **Build and deployment** 中，**Source** 选择 **GitHub Actions**（不要选 “Deploy from a branch” 的旧方式，除非你有意改用分支发布）。
-4. 合并或推送到 `main`，等待 Actions 中 “Deploy static site to GitHub Pages” 成功。
+2. **先**打开仓库 **Settings → Pages**。
+3. 在 **Build and deployment** 里，把 **Source** 设为 **GitHub Actions**，并保存（页面里会说明将通过 Actions 发布）。  
+   **若仍为 “Deploy from a branch” 或从未打开过 Pages，工作流在部署阶段可能失败。**
+4. **再**推送到 `main`（或手动 **Run workflow**），等待 “Deploy static site to GitHub Pages” 变绿。
+
+### 故障排除
+
+| 现象 | 处理 |
+|------|------|
+| `Get Pages site failed` / `Not Found`（与 `configure-pages` 或 Pages API 相关） | 已在工作流中去掉 `configure-pages`。若仍失败，请确认第 3 步已把 **Source** 设为 **GitHub Actions**，保存后重新运行工作流。 |
+| 私有仓库部署异常 | 确认仓库 **Settings → Actions → General** 里 Workflow permissions 允许读写；私有仓库的 Pages 可能受套餐限制，见 [GitHub 文档](https://docs.github.com/pages/getting-started-with-github-pages/about-github-pages)。 |
 
 ### 访问地址
 
