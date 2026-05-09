@@ -1,0 +1,89 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #0a0d18;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #eaeaea;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 20%, #1f2a4a 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, #3a1f4a 0%, transparent 50%),
+    #0a0d18;
+}
+
+.phone {
+  position: relative;
+  /* 始终维持 384:640 比例，宽度取 viewport 宽与高*0.6 的较小值 */
+  aspect-ratio: 384 / 640;
+  width: min(100vw, calc(100svh * 384 / 640));
+  /* 桌面上模拟手机外壳，最大 384px */
+  max-width: 384px;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 4px #1a1f2e;
+}
+
+/* 真机全屏 / 小窗口：去掉外框限制 */
+@media (max-width: 500px), (max-height: 700px) {
+  .phone {
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  /* 去掉 pixelated，游戏用平滑缩放 */
+  touch-action: none;
+}
+
+.rotate-hint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  color: #ffd866;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  letter-spacing: 4px;
+  z-index: 99;
+  font-weight: 700;
+}
+
+.rotate-hint > div:first-child {
+  font-size: 64px;
+  margin-bottom: 16px;
+  animation: rotate-icon 2s ease-in-out infinite;
+}
+
+@keyframes rotate-icon {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(-90deg); }
+}
+
+.rotate-hint.hidden { display: none; }
+
+/* 横屏提示 */
+@media (orientation: landscape) and (max-width: 900px) {
+  .rotate-hint:not(.hidden) { display: flex; }
+}

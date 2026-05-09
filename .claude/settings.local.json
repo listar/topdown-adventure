@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(open *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(pip3 install *)",
+      "Bash(python3 gen_backgrounds.py)",
+      "Bash(sed -i '' '412s/bgKey: '\\\\''sky'\\\\''/bgKey: '\\\\''bgVillage'\\\\''/' js/scenes.js)",
+      "Bash(sed -i '' '485s/bgKey: '\\\\''mountain'\\\\''/bgKey: '\\\\''bgForest'\\\\''/' js/scenes.js)",
+      "Bash(sed -i '' '537s/bgKey: null/bgKey: '\\\\''bgCave'\\\\''/' js/scenes.js)",
+      "Bash(sed -i '' '574s/bgKey: '\\\\''mountain'\\\\''/bgKey: '\\\\''bgMountaintop'\\\\''/' js/scenes.js)",
+      "Bash(sed -i '' '608s/bgKey: '\\\\''sky'\\\\''/bgKey: '\\\\''bgDocks'\\\\''/' js/scenes.js)",
+      "Bash(python3 *)",
+      "Bash(python3 art/gen_new_scenes.py)",
+      "Read(//tmp/**)",
+      "Bash(ipconfig getifaddr *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>仙踪奇缘 · Mobile RPG Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="phone">
+      <!-- 游戏画布 (内部分辨率 384x640, CSS 缩放适配屏幕) -->
+      <canvas id="game" width="384" height="640"></canvas>
+
+      <!-- 旋转提示 (横屏时遮挡) -->
+      <div id="rotate-hint" class="rotate-hint hidden">
+        <div>📱</div>
+        <div>请竖屏游玩</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/input.js"></script>
+  <script src="js/items.js"></script>
+  <script src="js/quests.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/npc.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
